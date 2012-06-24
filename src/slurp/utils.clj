@@ -7,8 +7,8 @@
 
 (defn url-encode
   [s]
-  (let [reserved #"[!*'();:@&=+$,/?#\[\]]"]
-    (str/replace s reserved
+  (let [unreserved #"[^A-Za-z0-9_~.+-]+"]
+    (str/replace s unreserved
                  (fn [c]
                    (str/join
                     (map (partial format "%%%02X")
